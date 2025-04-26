@@ -58,9 +58,7 @@ i = 0
 j = 0
 while i+j < len(sorted_x)-2:
     vector_1 = np.array([sorted_x[i+j+1]-sorted_x[i], sorted_y[i+j+1]-sorted_y[i], 0])
-    # vector_1 = [val/np.linalg.norm(val) for val in vector_1]  
     vector_2 = np.array([sorted_x[i+j+2]-sorted_x[i], sorted_y[i+j+2]-sorted_y[i], 0])
-    # vector_2 = [val/np.linalg.norm(val) for val in vector_2]
     # Find locally convex points
     if np.cross(vector_1, vector_2)[2] > 0:
         polygon_indexes.append(i+j+1)
@@ -73,7 +71,7 @@ while i+j < len(sorted_x)-2:
             vector_previous = np.array([0, 1, 0])
         if np.cross(vector_1, vector_previous)[2] >= 0:
             polygon_search_index_lower_bound = 0
-            polygon_search_index_upper_bound = len(polygon_indexes)-1 # Figure out why it needs the -1 term
+            polygon_search_index_upper_bound = len(polygon_indexes)-1
             critical_point_found = False
             while not critical_point_found:
                 polygon_search_index = (polygon_search_index_lower_bound+polygon_search_index_upper_bound)//2
@@ -104,34 +102,6 @@ polygon_y = [sorted_y[index] for index in polygon_indexes]
 
 print(polygon_x)
 print(polygon_y)
-
-
-
-# new_polygon_indexes = [0]
-# i = 0
-# j = 0
-# while i+j < len(polygon_x)-2:
-#     vector_1 = np.array([polygon_x[i+j+1]-polygon_x[i], polygon_y[i+j+1]-polygon_y[i], 0])
-#     # vector_1 = [val/np.linalg.norm(val) for val in vector_1]  
-#     vector_2 = np.array([polygon_x[i+j+2]-polygon_x[i], polygon_y[i+j+2]-polygon_y[i], 0])
-#     # vector_2 = [val/np.linalg.norm(val) for val in vector_2]
-#     if np.cross(vector_1, vector_2)[2] > 0:
-#         new_polygon_indexes.append(i+j+1)
-#         i = i+j+1
-#         j = 0
-#     else:
-#         j = j+1
-
-# new_polygon_indexes.append(0)
-# print(new_polygon_indexes)
-
-# new_polygon_x = [polygon_x[index] for index in new_polygon_indexes]
-# new_polygon_y = [polygon_y[index] for index in new_polygon_indexes]
-
-# print(new_polygon_x)
-# print(new_polygon_y)
-
-
 
 plt.plot(xValues, yValues, 'o')
 plt.plot(averageX, averageY, 'om')
