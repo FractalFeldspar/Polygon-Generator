@@ -3,12 +3,6 @@ import numpy as np
 from numpy import random
 import math
 
-# x = random.randint(100)
-
-# random_float = random.uniform(0, 100)
-
-# print("Your random float is:", round(random_float, 4))
-
 numPoints = 20
 xValues = [random.uniform(0,100) for _ in range(numPoints)]
 yValues = [random.uniform(0,100) for _ in range(numPoints)]
